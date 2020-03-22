@@ -1,9 +1,7 @@
-var express = require('express')
-var router = express.Router()
+var express = require('express');
+var router = express.Router();
+var registerController = require('../controllers/register');
 
-router.post('/', function (req, res) {
-    console.log(req.body);
-    res.send('register')
-})
+router.post('/', registerController.register);
 
-module.exports = router
+module.exports = router;

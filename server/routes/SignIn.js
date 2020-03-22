@@ -1,9 +1,7 @@
-var express = require('express')
-var router = express.Router()
+var express = require('express');
+var router = express.Router();
+var signInController = require('../controllers/signin');
 
-router.post('/', function (req, res) {
-    console.log(req.body);
-    res.send('SignIn')
-})
+router.post('/', signInController.signIn);
 
-module.exports = router
+module.exports = router;

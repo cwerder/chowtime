@@ -1,8 +1,7 @@
-var express = require('express')
-var router = express.Router()
+var express = require('express');
+var router = express.Router();
+var secretController = require('../controllers/secret');
 
-router.get('/', function (req, res) {
-  res.send('secret page')
-})
+router.get('/', secretController.secret);
 
-module.exports = router
+module.exports = router;
