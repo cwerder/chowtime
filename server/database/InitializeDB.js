@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-// var NewUser = require('./models');
 
 const uri = process.env.ENVIRONMENT === 'DEV' ?
   `localhost:${process.env.DB_PORT_LOCAL}` :
