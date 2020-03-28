@@ -1,4 +1,5 @@
 var NewUser = require('../database/models');
+var toJWT = require('../helpers').toJWT;
 
 module.exports = {
     register: (req, res) => {
@@ -11,7 +12,7 @@ module.exports = {
             return console.error(error);
           }
           console.log('User successfully added:', user);
-          res.send(user);
+          res.send(toJWT(user.toJSON()));
         });
     }
 }
