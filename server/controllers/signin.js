@@ -1,4 +1,5 @@
 var NewUser = require('../database/models');
+var toToken = require('../helpers').toJWT;
 
 module.exports = {
     signIn: (req, res) => {
@@ -15,8 +16,7 @@ module.exports = {
             } else if (!user) {
                 res.sendStatus(404);
             } else {
-                console.log('user!', user);
-                res.sendStatus(200);
+                res.send(toToken(user.toJSON()));
             }
         });
     }

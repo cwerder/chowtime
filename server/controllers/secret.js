@@ -1,9 +1,15 @@
-// var NewUser = require('../database/models');
+var verifyJWT = require('../helpers').verifyJWT;
+var stuff = require('../helpers').headerValueParser;
 
 module.exports = {
     secret: (req, res) => {
         console.log('hit secret controller');
 
-        res.send('secret');
+        try {
+            verifyJWT(req.headers.authorization);
+            res.sendStatus(200);
+        } catch (err) {
+            res.sendStatus(401);
+        }
     }
 }
