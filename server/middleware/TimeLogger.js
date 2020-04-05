@@ -1,4 +1,4 @@
 module.exports = function timeLog (req, res, next) {
-    console.log('Time: ', Date.now());
+    console.log('Time: ', new Date().toDateString());
     next();
 };

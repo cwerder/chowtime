@@ -1,7 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-var NewUser = require('./database/models');
+var User = require('./database/models');
 var toToken = require('./helpers').toJWT;
 
 
@@ -10,7 +10,7 @@ passport.use('local-login', new LocalStrategy({
     passwordField: 'password'
     },
     (email, password, done) => {
-        NewUser.findOne({
+        User.findOne({
             email: email,
             password: password
         }, (err, user) => {
@@ -31,7 +31,7 @@ passport.use('local-register', new LocalStrategy({
     passwordField: 'password'
     },
     (email, password, done) => {
-        NewUser.findOne({
+        User.findOne({
             email: email
         }, (err, user) => {
             if (err) {
@@ -41,12 +41,12 @@ passport.use('local-register', new LocalStrategy({
                 return done(null, false);
             }
 
-            const newUser = new NewUser({email: email, password: password});
-            newUser.save((error, registeredUser) => {
+            const newUser = new User({email: email, password: password});
+            newUser.save((error, registerUser) => {
                 if (error) {
                     return console.error(error);
                 }
-                return done(null, toToken(registeredUser.toJSON()));
+                return done(null, toToken(registerUser.toJSON()));
             });
         })
     }

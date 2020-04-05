@@ -1,4 +1,4 @@
 const mongoose = require('mongoose');
-const registerSchema = require('./schemas/register');
+const userSchema = require('./schemas/User');
 
-module.exports = mongoose.model('register', registerSchema);
+module.exports = mongoose.model('user', userSchema);
