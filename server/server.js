@@ -2,12 +2,17 @@ const express = require('express')
 const morgan = require('morgan')
 const app = express()
 require('dotenv').config()
-
-// initialize routing
-var userRouter = require('./routes/user');
+const passport = require('passport');
+require('./passport');
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(passport.initialize());
+
+// initialize routing
+var userRouter = require('./routes/user');
+var successRouter = require('./routes/success');
+var errorRouter = require('./routes/error');
 
 // initialize middleware
 var timeLoggerMiddleware = require('./middleware/TimeLogger');
@@ -18,6 +23,8 @@ app.use(timeLoggerMiddleware)
 
 // link routers
 app.use('/user', userRouter)
+app.use('/success', successRouter)
+app.use('/error', errorRouter)
 
 // initiate connection to db
 require('./database/InitializeDB');

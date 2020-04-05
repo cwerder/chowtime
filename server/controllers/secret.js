@@ -1,5 +1,4 @@
 var verifyJWT = require('../helpers').verifyJWT;
-var stuff = require('../helpers').headerValueParser;
 
 module.exports = {
     secret: (req, res) => {

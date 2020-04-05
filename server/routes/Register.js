@@ -1,7 +1,9 @@
 var express = require('express');
+var passport = require('passport');
 var router = express.Router();
-var registerController = require('../controllers/register');
 
-router.post('/', registerController.register);
+router.post('/', passport.authenticate('local-register',
+                {successRedirect: '/success',
+                failureRedirect: '/error'}))
 
 module.exports = router;
