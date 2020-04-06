@@ -1,9 +1,10 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+const validator = require("credentials-validator");
 
 var User = require('./database/models');
 var toToken = require('./helpers').toJWT;
-
+validator.setSettings(require('./validation-settings'));
 
 passport.use('local-login', new LocalStrategy({
     usernameField: 'email',
@@ -40,9 +41,23 @@ passport.use('local-register', new LocalStrategy({
             if (user) {
                 return done(null, false);
             }
+            let userIsValid = true;
+            const potentialUser = new User({email: email, password: password});
+            
+            validator.checkEmail(potentialUser.email, (error) => {
+                userIsValid = false;
+                console.table(error);
+            })
+            validator.checkPassword(potentialUser.password, (error) => {
+                userIsValid = false;
+                console.table(error);
+            })
+            if (!userIsValid) {
+                return done(null, false);
+            }
 
-            const newUser = new User({email: email, password: password});
-            newUser.save((error, registerUser) => {
+
+            potentialUser.save((error, registerUser) => {
                 if (error) {
                     return console.error(error);
                 }
