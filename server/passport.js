@@ -1,6 +1,8 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 const validator = require("credentials-validator");
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 var User = require('./database/models');
 var toToken = require('./helpers').toJWT;
@@ -12,9 +14,8 @@ passport.use('local-login', new LocalStrategy({
     },
     (email, password, done) => {
         User.findOne({
-            email: email,
-            password: password
-        }, (err, user) => {
+            email: email
+        }, async (err, user) => {
             console.log('passport user', user);
             if (err) {
                 return done(err);
@@ -22,7 +23,15 @@ passport.use('local-login', new LocalStrategy({
             if (!user) {
                 return done(null, false);
             }
-            return done(null, toToken(user.toJSON()));
+
+            const match = await bcrypt.compare(password, user.password);
+ 
+            if (match) {
+                return done(null, toToken(user.toJSON()));
+            } else {
+                console.log('no password match')
+                return done(null, false);
+            }
         })
     })
 );
@@ -56,12 +65,28 @@ passport.use('local-register', new LocalStrategy({
                 return done(null, false);
             }
 
-
-            potentialUser.save((error, registerUser) => {
-                if (error) {
-                    return console.error(error);
+            // generate a salt and hash password
+            bcrypt.genSalt(saltRounds, function(e, salt) {
+                if (e) {
+                    console.error(e);
+                    console.log('oye', e)
+                    return done(null, false);
                 }
-                return done(null, toToken(registerUser.toJSON()));
+                bcrypt.hash(potentialUser.password, salt, function(err, hashedPassword) {
+                    if (err) {
+                        console.error(err);
+                        return done(null, false);
+                    }
+                    potentialUser.password = hashedPassword;
+                    // Store hash in your password DB.
+                    potentialUser.save((error, registerUser) => {
+                        if (error) {
+                            console.error(error);
+                            return done(null, false);
+                        }
+                        return done(null, toToken(registerUser.toJSON()));
+                    });
+                });
             });
         })
     }
