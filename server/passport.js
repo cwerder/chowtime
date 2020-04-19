@@ -69,7 +69,6 @@ passport.use('local-register', new LocalStrategy({
             bcrypt.genSalt(saltRounds, function(e, salt) {
                 if (e) {
                     console.error(e);
-                    console.log('oye', e)
                     return done(null, false);
                 }
                 bcrypt.hash(potentialUser.password, salt, function(err, hashedPassword) {
