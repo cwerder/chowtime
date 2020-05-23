@@ -1,0 +1,13 @@
+<div class="register">
+  <header>Welcome to Chowtime</header>
+  <hr>
+  <div>
+    <h2>Register</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <label>Username: <input formControlName="email"></label>
+      <label>Password: <input formControlName="password" type="password"></label>
+      <label>Confirm Password: <input formControlName="confirm_password" type="password"></label>
+      <input type="submit" value="Submit" [disabled]="!registerForm.valid">
+    </form>
+  </div>
+</div>
