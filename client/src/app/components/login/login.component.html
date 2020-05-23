@@ -3,10 +3,10 @@
   <hr>
   <div>
     <h2>Login</h2>
-    <form>
-      <label>Username: <input type="text"></label>
-      <label>Password: <input type="password"></label>
-      <input type="submit" value="Submit">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <label>Email: <input formControlName="email"></label>
+      <label>Password: <input formControlName="password" type="password"></label>
+      <input type="submit" value="Submit" [disabled]="!loginForm.valid">
     </form>
   </div>
 </div>
