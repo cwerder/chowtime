@@ -1,5 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
+var cors = require('cors')
+var cookieParser = require('cookie-parser');
 const app = express()
 require('dotenv').config()
 const passport = require('passport');
@@ -8,6 +10,8 @@ require('./passport');
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(passport.initialize());
+app.use(cookieParser());
+app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 
 // initialize routing
 var userRouter = require('./routes/user');

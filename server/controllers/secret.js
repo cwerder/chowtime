@@ -5,8 +5,8 @@ module.exports = {
         console.log('hit secret controller');
 
         try {
-            verifyJWT(req.headers.authorization);
-            res.sendStatus(200);
+            verifyJWT(req.cookies.authorization);
+            res.set('authorization', req.cookies.authorization).json(200);
         } catch (err) {
             res.sendStatus(401);
         }
