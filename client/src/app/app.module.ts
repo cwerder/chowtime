@@ -7,12 +7,14 @@ import { AppRoutingModule } from './modules/app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthenticationModule } from './modules/authentication.module';
 import { ErrorComponent } from './components/error/error.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SuccessComponent,
-    ErrorComponent
+    ErrorComponent,
+    HomeComponent
   ],
   imports: [
     AuthenticationModule,

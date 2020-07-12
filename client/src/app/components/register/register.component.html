@@ -1,13 +1,21 @@
 <div class="register">
-  <header>Welcome to Chowtime</header>
+  <header class="title-header">Welcome to Chowtime</header>
   <hr>
   <div>
-    <h2>Register</h2>
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <label>Email: <input formControlName="email"></label>
-      <label>Password: <input formControlName="password" type="password"></label>
-      <label>Confirm Password: <input formControlName="confirm_password" type="password"></label>
-      <input type="submit" value="Submit" [disabled]="!registerForm.valid">
+    <h2 class="header">Register</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="registerForm">
+      <label class="credentialField">
+        <input formControlName="email" placeholder="Email">
+      </label>
+      <label class="credentialField">
+        <input formControlName="password" type="password" placeholder="Password">
+      </label>
+      <label class="credentialField">
+        <input formControlName="confirm_password" type="password" placeholder="Confirm Password">
+      </label>
+      <label class="centerLabel">
+        <input class="button credentialField" type="submit" value="Submit" [disabled]="!registerForm.valid">
+      </label>
     </form>
   </div>
 </div>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -12,7 +13,7 @@ export class AuthenticationService {
         this.headers = new HttpHeaders();
     }
 
-    register(body) {
+    register(body): Observable<string> {
         return this.http.post(
             'http://localhost:3000/user/register',
             body, 
@@ -20,11 +21,12 @@ export class AuthenticationService {
                 headers: this.headers.append(
                     "Content-Type", "application/json",
                 ),
+                responseType: 'text',
                 withCredentials: true
             });
     }
 
-    secret() {
+    secret(): Observable<string> {
         return this.http.get(
             'http://localhost:3000/user/secret',
             {

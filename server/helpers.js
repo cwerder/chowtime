@@ -10,7 +10,7 @@ let helper = module.exports = {
     },
 
     headerValueParser: (headerValue) => {
-        let index = headerValue.indexOf('=');
+        let index = headerValue.indexOf('authorization=');
         return headerValue.substring(index);
     }
 }

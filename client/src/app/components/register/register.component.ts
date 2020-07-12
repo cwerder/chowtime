@@ -34,13 +34,8 @@ export class RegisterComponent {
   onSubmit() {
     this.authenticationService.register(this.registerForm.value).subscribe(
       (token) => {
-        localStorage.setItem('authorization', token.toString());
-        this.router.navigate(['success']);
-        this.authenticationService.secret().subscribe((res) => {
-          console.log('secret success!!!!', res);
-        }, (err) => {
-          console.log('not authorized!', err);
-        })
+        localStorage.setItem('authorization', token);
+        this.router.navigate(['home']);
       },
       () => {
         this.router.navigate(['/error']);
