@@ -1,0 +1,8 @@
+<h2>Welcome to Chowtime!</h2>
+<div>
+  <div>hello</div>
+  <login *ngIf="loginSelected; else registerSelected"></login>
+  <ng-template #registerSelected>
+    <register></register>
+  </ng-template>
+</div>

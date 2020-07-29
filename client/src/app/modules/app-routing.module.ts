@@ -1,6 +1,6 @@
+import { CookieService } from 'ngx-cookie-service';
+import { AuthenticationComponent } from './../components/authentication/authentication.component';
 import { RouteGuard } from './../route-guard.guard';
-import { LoginComponent } from '../components/login/login.component';
-import { RegisterComponent } from '../components/register/register.component';
 import { SuccessComponent } from '../components/success/success.component';
 import { ErrorComponent } from '../components/error/error.component';
 import { HomeComponent } from './../home/home.component';
@@ -12,15 +12,14 @@ const routes: Routes = [
     { path: 'success', component: SuccessComponent, canActivate: [RouteGuard] },
     { path: 'error', component: ErrorComponent },
     { path: 'home', component: HomeComponent, canActivate: [RouteGuard] },
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent},
-    { path: '', component: RegisterComponent}
+    { path: 'authentication', component: AuthenticationComponent },
+    { path: '', component: HomeComponent, canActivate: [RouteGuard] }
 ];
 
 // configures NgModule imports and exports
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [RouteGuard]
+  providers: [RouteGuard, CookieService]
 })
 export class AppRoutingModule { }

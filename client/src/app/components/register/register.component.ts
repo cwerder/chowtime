@@ -33,9 +33,8 @@ export class RegisterComponent {
 
   onSubmit() {
     this.authenticationService.register(this.registerForm.value).subscribe(
-      (token) => {
-        localStorage.setItem('authorization', token);
-        this.router.navigate(['home']);
+      () => {
+        this.router.navigate(['/home']);
       },
       () => {
         this.router.navigate(['/error']);
