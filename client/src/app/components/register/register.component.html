@@ -1,8 +1,6 @@
 <div class="register">
-  <header class="title-header">Welcome to Chowtime</header>
   <hr>
   <div>
-    <h2 class="header">Register</h2>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="registerForm">
       <label class="credentialField">
         <input formControlName="email" placeholder="Email">
@@ -14,7 +12,7 @@
         <input formControlName="confirm_password" type="password" placeholder="Confirm Password">
       </label>
       <label class="centerLabel">
-        <input class="button credentialField" type="submit" value="Submit" [disabled]="!registerForm.valid">
+        <input class="button credentialField" type="submit" value="Register" [disabled]="!registerForm.valid">
       </label>
     </form>
   </div>

@@ -27,15 +27,9 @@ export class LoginComponent {
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   onSubmit() {
-    this.authenticationService.register(this.loginForm.value).subscribe(
-      (token) => {
-        localStorage.setItem('authorization', token.toString());
-        this.router.navigate(['success']);
-        this.authenticationService.secret().subscribe((res) => {
-          console.log('secret success!!!!', res);
-        }, (err) => {
-          console.log('not authorized!', err);
-        })
+    this.authenticationService.login(this.loginForm.value).subscribe(
+      () => {
+        this.router.navigate(['/home']);
       },
       () => {
         this.router.navigate(['/error'])
