@@ -1,6 +1,9 @@
 <h2>Welcome to Chowtime!</h2>
-<div>
-  <div>hello</div>
+<div class="authentication-modal">
+  <span>
+    <a (click)="loginSelected=false;" class="registerOrLogin">Register</a>
+    <a (click)="loginSelected=true;" class="registerOrLogin">Login</a>
+  </span>
   <login *ngIf="loginSelected; else registerSelected"></login>
   <ng-template #registerSelected>
     <register></register>

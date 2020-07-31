@@ -1,12 +1,16 @@
 <div class="login">
-  <header>Welcome to Chowtime</header>
   <hr>
   <div>
-    <h2>Login</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <label>Email: <input formControlName="email"></label>
-      <label>Password: <input formControlName="password" type="password"></label>
-      <input type="submit" value="Submit" [disabled]="!loginForm.valid">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="loginForm">
+      <label class="credentialField">
+        <input formControlName="email" placeholder="Email">
+      </label>
+      <label class="credentialField">
+        <input formControlName="password" type="password" placeholder="Password">
+      </label>
+      <label class="centerLabel">
+        <input type="submit" value="Login" [disabled]="!loginForm.valid">
+      </label>
     </form>
   </div>
 </div>

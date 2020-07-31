@@ -26,6 +26,19 @@ export class AuthenticationService {
             });
     }
 
+    login(body): Observable<string> {
+        return this.http.post(
+            'http://localhost:3000/user/signin',
+            body, 
+            {
+                headers: this.headers.append(
+                    "Content-Type", "application/json",
+                ),
+                responseType: 'text',
+                withCredentials: true
+            });
+    }
+
     secret(): Observable<string> {
         return this.http.get(
             'http://localhost:3000/user/secret',
