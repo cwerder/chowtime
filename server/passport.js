@@ -1,10 +1,12 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
 const validator = require("credentials-validator");
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-var User = require('./database/models');
+var LocalUser = require('./database/models').LocalUserModel;
+var TwitterUser = require('./database/models').TwitterUserModel;
 var toToken = require('./helpers').toJWT;
 validator.setSettings(require('./validation-settings'));
 
@@ -13,7 +15,7 @@ passport.use('local-login', new LocalStrategy({
     passwordField: 'password'
     },
     (email, password, done) => {
-        User.findOne({
+        LocalUser.findOne({
             email: email
         }, async (err, user) => {
             console.log('passport user', user);
@@ -41,7 +43,7 @@ passport.use('local-register', new LocalStrategy({
     passwordField: 'password'
     },
     (email, password, done) => {
-        User.findOne({
+        LocalUser.findOne({
             email: email
         }, (err, user) => {
             if (err) {
@@ -51,7 +53,7 @@ passport.use('local-register', new LocalStrategy({
                 return done(null, false);
             }
             let userIsValid = true;
-            const potentialUser = new User({email: email, password: password});
+            const potentialUser = new LocalUser({email: email, password: password});
             
             validator.checkEmail(potentialUser.email, (error) => {
                 userIsValid = false;
@@ -89,6 +91,19 @@ passport.use('local-register', new LocalStrategy({
             });
         })
     }
+));
+
+passport.use(new TwitterStrategy({
+    consumerKey: process.env.TWITTER_CONSUMER_KEY,
+    consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+    callbackURL: "http://localhost:3000/oauth/twitter/callback"
+  }, function(token, tokenSecret, profile, done) {
+    console.log('profile', profile);
+    TwitterUser.find({ twitterId: profile.id }, function(err, user) {
+      if (err) { return done(err); }
+      done(null, user);
+    });
+  }
 ));
 
 

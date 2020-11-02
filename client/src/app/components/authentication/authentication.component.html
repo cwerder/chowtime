@@ -1,8 +1,21 @@
 <h2>Welcome to Chowtime!</h2>
 <div class="authentication-modal">
+  <img
+      class="twitter"
+      type="image"
+      src="https://cdn.cms-twdigitalassets.com/content/dam/developer-twitter/auth-docs/sign-in-with-twitter-gray.png.img.fullhd.medium.png"
+      (click)="twitterOAuth()" />
   <span>
-    <a (click)="loginSelected=false;" class="registerOrLogin">Register</a>
-    <a (click)="loginSelected=true;" class="registerOrLogin">Login</a>
+    <a
+      (click)="loginSelected=false;"
+      [ngClass]="{
+        'registerOrLogin': true,
+        'registerOrLoginUnderline': loginSelected === false
+    }">Register</a>
+    <a (click)="loginSelected=true;" [ngClass]="{
+      'registerOrLogin': true,
+      'registerOrLoginUnderline': loginSelected === true
+    }">Login</a>
   </span>
   <login *ngIf="loginSelected; else registerSelected"></login>
   <ng-template #registerSelected>

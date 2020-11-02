@@ -6,10 +6,17 @@ const app = express()
 require('dotenv').config()
 const passport = require('passport');
 require('./passport');
+const session = require('express-session');
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: process.env.TWITTER_CONSUMER_SECRET
+  }));
 app.use(passport.initialize());
+app.use(passport.session());
 app.use(cookieParser());
 app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 
@@ -17,6 +24,7 @@ app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 var userRouter = require('./routes/user');
 var successRouter = require('./routes/success');
 var errorRouter = require('./routes/error');
+var oauthRouter = require('./routes/oauth');
 
 // initialize middleware
 var timeLoggerMiddleware = require('./middleware/TimeLogger');
@@ -29,6 +37,7 @@ app.use(timeLoggerMiddleware)
 app.use('/user', userRouter)
 app.use('/success', successRouter)
 app.use('/error', errorRouter)
+app.use('/oauth', oauthRouter)
 
 // initiate connection to db
 require('./database/InitializeDB');

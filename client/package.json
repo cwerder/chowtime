@@ -11,7 +11,7 @@
     "initialize": "concurrently \"npm run client\" \"npm run server\" \"npm run db\"",
     "client": "npm start",
     "server": "cd ../server; nodemon server.js",
-    "db": "cd ../server; mongod"
+    "db": "cd ../server; mongod --dbpath=/Users/cj/data/db"
   },
   "private": true,
   "dependencies": {

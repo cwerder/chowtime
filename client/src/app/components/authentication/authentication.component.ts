@@ -5,13 +5,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './authentication.component.html',
   styleUrls: ['./authentication.component.less']
 })
-export class AuthenticationComponent implements OnInit {
+export class AuthenticationComponent {
 
   private loginSelected: boolean = true;
 
   constructor() { }
 
-  ngOnInit() {
+  public twitterOAuth() {
+    window.open("http://localhost:3000/oauth/twitter", "_self");
   }
 
 }

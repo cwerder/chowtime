@@ -13,7 +13,7 @@ export class AuthenticationService {
         this.headers = new HttpHeaders();
     }
 
-    register(body): Observable<string> {
+    public register(body): Observable<string> {
         return this.http.post(
             'http://localhost:3000/user/register',
             body, 
@@ -26,7 +26,7 @@ export class AuthenticationService {
             });
     }
 
-    login(body): Observable<string> {
+    public login(body): Observable<string> {
         return this.http.post(
             'http://localhost:3000/user/signin',
             body, 
@@ -39,13 +39,13 @@ export class AuthenticationService {
             });
     }
 
-    secret(): Observable<string> {
+    public secret(): Observable<string> {
         return this.http.get(
             'http://localhost:3000/user/secret',
             {
                 responseType: 'text',
                 withCredentials: true
             }
-        )
+        );
     }
 }

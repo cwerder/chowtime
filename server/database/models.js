@@ -1,4 +1,8 @@
 const mongoose = require('mongoose');
-const userSchema = require('./schemas/User');
+const userSchema = require('./schemas/User').LocalUser;
+const twitterUserSchema = require('./schemas/User').TwitterUser;
 
-module.exports = mongoose.model('user', userSchema);
+module.exports = {
+    LocalUserModel: mongoose.model('user', userSchema),
+    TwitterUserModel: mongoose.model('twitterUser', twitterUserSchema)
+}
