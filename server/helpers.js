@@ -2,7 +2,8 @@ var jwt = require('jsonwebtoken');
 
 let helper = module.exports = {
     toJWT: (document) => {
-        return jwt.sign(document, process.env.JWT_SECRET)
+        delete document.password;
+        return jwt.sign(document, process.env.JWT_SECRET);
     },
 
     verifyJWT: (token) => {

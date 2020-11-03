@@ -98,10 +98,20 @@ passport.use(new TwitterStrategy({
     consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
     callbackURL: "http://localhost:3000/oauth/twitter/callback"
   }, function(token, tokenSecret, profile, done) {
-    console.log('profile', profile);
-    TwitterUser.find({ twitterId: profile.id }, function(err, user) {
+    TwitterUser.findOne({ twitter_profile_id: profile.id }, function(err, user) {
       if (err) { return done(err); }
-      done(null, user);
+      if (!user) {
+        const registerUser = new TwitterUser({ twitter_profile_id: profile.id });
+        registerUser.save((error, newUser) => {
+        if (error) {
+            console.error(error);
+            return done(null, false);
+        }
+        done(null, toToken(newUser.toJSON()));
+        });
+      } else {
+        done(null, toToken(user.toJSON()));
+      }
     });
   }
 ));

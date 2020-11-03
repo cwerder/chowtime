@@ -6,6 +6,6 @@ module.exports = {
         password: String
     }),
     TwitterUser: new mongoose.Schema({
-        id: String
+        twitter_profile_id: String
     })
 };
