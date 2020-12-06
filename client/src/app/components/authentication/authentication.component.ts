@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthenticationComponent {
 
-  private loginSelected: boolean = true;
+  public loginSelected: boolean = true;
 
   constructor() { }
 
