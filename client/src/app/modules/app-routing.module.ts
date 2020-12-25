@@ -3,7 +3,7 @@ import { AuthenticationComponent } from './../components/authentication/authenti
 import { RouteGuard } from './../route-guard.guard';
 import { SuccessComponent } from '../components/success/success.component';
 import { ErrorComponent } from '../components/error/error.component';
-import { HomeComponent } from './../home/home.component';
+import { HomeComponent } from '../components/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'; // CLI imports router
 

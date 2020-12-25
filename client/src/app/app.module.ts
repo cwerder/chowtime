@@ -8,14 +8,16 @@ import { AppComponent } from './app.component';
 import { AuthenticationModule } from './modules/authentication.module';
 import { CookieService } from 'ngx-cookie-service';
 import { ErrorComponent } from './components/error/error.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/home/home.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SuccessComponent,
     ErrorComponent,
-    HomeComponent
+    HomeComponent,
+    NavbarComponent
   ],
   imports: [
     AuthenticationModule,
