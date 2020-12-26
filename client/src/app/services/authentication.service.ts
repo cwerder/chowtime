@@ -1,7 +1,9 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { CookieService } from 'ngx-cookie-service';
+ 
 @Injectable({
     providedIn: 'root',
 })
@@ -9,7 +11,9 @@ export class AuthenticationService {
 
     private headers: HttpHeaders;
 
-    constructor(private http: HttpClient) {
+    public isLoggedIn: boolean;
+
+    constructor(private cookieService: CookieService, private http: HttpClient, private router: Router) {
         this.headers = new HttpHeaders();
     }
 
@@ -47,5 +51,20 @@ export class AuthenticationService {
                 withCredentials: true
             }
         );
+    }
+
+    public redirectToLogin() {
+        this.router.navigate(['/authentication']);
+        this.isLoggedIn = false;
+    }
+
+    public logout() {
+        this.cookieService.set('authorization', this.cookieService.get('authorization'), new Date());
+        this.redirectToLogin();
+        this.isLoggedIn = false;
+    }
+
+    public loginStatus(): boolean {
+        return this.cookieService.check('authorization');
     }
 }

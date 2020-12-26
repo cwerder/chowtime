@@ -15,5 +15,11 @@
     </ul>
     <span class="justify-right">
         <i class="cart-size fas fa-shopping-cart"></i>
+        <span class="auth" *ngIf="this.authService.loginStatus(); else anonymous" (click)="this.authService.logout()">
+            Logout
+        </span>
+        <ng-template #anonymous (click)="this.authService.redirectToLogin()">
+            <span class="auth">Log In</span>
+        </ng-template>
     </span>
 </nav>
