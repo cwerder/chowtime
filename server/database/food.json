@@ -1,0 +1,57 @@
+{
+    "burger": {
+        "hamburger": {
+            "name": "Hamburger",
+            "description": "Hamburger",
+            "count": 100,
+            "image": "./MenuImages/hamburger.jpeg",
+            "price": 599
+        },
+        "cheeseburger": {
+            "name": "Cheeseburger",
+            "description": "Cheeseburger",
+            "count": 150,
+            "image": "./MenuImages/cheeseburger.jpeg",
+            "price": 799
+        },
+        "baconburger": {
+            "name": "Bacon Burger",
+            "description": "Bacon Burger",
+            "count": 95,
+            "image": "./MenuImages/baconburger.jpeg",
+            "price": 999
+        }
+    },
+    "side": {
+        "fries": {
+            "name": "Fries",
+            "description": "Fries",
+            "count": 200,
+            "image": "./MenuImages/fries.jpeg",
+            "price": 199
+        },
+        "coleslaw": {
+            "name": "Coleslaw",
+            "description": "Coleslaw",
+            "count": 300,
+            "image": "./MenuImages/coleslaw.jpeg",
+            "price": 150
+        }
+    },
+    "beverage": {
+        "water": {
+            "name": "Water",
+            "description": "Water",
+            "count": 300,
+            "image": "./MenuImages/water.jpeg",
+            "price": 99
+        },
+        "pepsi": {
+            "name": "Pepsi",
+            "description": "Pepsi",
+            "count": 250,
+            "image": "./MenuImages/pepsi.jpeg",
+            "price": 150
+        }
+    }
+}

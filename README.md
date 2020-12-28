@@ -5,3 +5,5 @@ If running in dev environment, make sure you run the MongoDb server is running l
 To run the front-end, back-end, and database server together run "npm run initialize" from the client directory.
 
 Run mongod --dbpath=/Users/cj/data/db when mongodb fails to start.
+
+Run seedfood script if you want to seed the database with food options.
