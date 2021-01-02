@@ -4,13 +4,13 @@
     </span>
     <ul>
         <li>
-            <a href="/burgers" target="_blank" rel="noreferrer noopener">Burgers</a>
+            <a href="/food/burgers">Burgers</a>
         </li>
         <li>
-            <a href="/sides" target="_blank" rel="noreferrer noopener">Sides</a>
+            <a href="/food/sides">Sides</a>
         </li>
         <li>
-            <a href="/drinks" target="_blank" rel="noreferrer noopener">Drinks</a>
+            <a href="/food/drinks">Drinks</a>
         </li>
     </ul>
     <span class="justify-right">
@@ -18,8 +18,8 @@
         <span class="auth" *ngIf="this.authService.loginStatus(); else anonymous" (click)="this.authService.logout()">
             Logout
         </span>
-        <ng-template #anonymous (click)="this.authService.redirectToLogin()">
-            <span class="auth">Log In</span>
+        <ng-template #anonymous>
+            <span class="auth" (click)="this.authService.redirectToLogin()">Log In</span>
         </ng-template>
     </span>
 </nav>

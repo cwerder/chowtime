@@ -1,0 +1,11 @@
+<div class="food-container">
+    <div *ngFor="let foodItem of foodItems" class="food-item">
+        <img src="{{foodItem.image}}" style="height: 260px;" />
+        <div>
+            {{foodItem.name}}
+        </div>
+        <div>
+            {{foodItem.price}}
+        </div>
+    </div>
+</div>

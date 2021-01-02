@@ -26,6 +26,7 @@ var userRouter = require('./routes/user');
 var successRouter = require('./routes/success');
 var errorRouter = require('./routes/error');
 var oauthRouter = require('./routes/oauth');
+var foodRouter = require('./routes/food');
 
 // initialize middleware
 var timeLoggerMiddleware = require('./middleware/TimeLogger');
@@ -39,6 +40,7 @@ app.use('/user', userRouter)
 app.use('/success', successRouter)
 app.use('/error', errorRouter)
 app.use('/oauth', oauthRouter)
+app.use('/food', foodRouter)
 
 // serve the angular app
 if (process.env.ENVIRONMENT !== 'DEV') {
