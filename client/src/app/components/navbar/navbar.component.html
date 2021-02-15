@@ -1,20 +1,22 @@
 <nav class="navbar">
     <span class="title">
-        <a href="/">Chowtime</a>
+        <a href="/" class="white-link">Chowtime</a>
     </span>
     <ul>
         <li>
-            <a href="/food/burgers">Burgers</a>
+            <a href="/food/burgers" class="white-link">Burgers</a>
         </li>
         <li>
-            <a href="/food/sides">Sides</a>
+            <a href="/food/sides" class="white-link">Sides</a>
         </li>
         <li>
-            <a href="/food/drinks">Drinks</a>
+            <a href="/food/drinks" class="white-link">Drinks</a>
         </li>
     </ul>
     <span class="justify-right">
-        <i class="cart-size fas fa-shopping-cart"></i>
+        <a href="/cart">
+            <i class="cart-size fas fa-shopping-cart black-link"></i>
+        </a>
         <span class="auth" *ngIf="this.authService.loginStatus(); else anonymous" (click)="this.authService.logout()">
             Logout
         </span>

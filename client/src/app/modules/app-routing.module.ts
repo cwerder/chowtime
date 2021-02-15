@@ -1,3 +1,4 @@
+import { CartComponent } from './../components/cart/cart.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationComponent } from './../components/authentication/authentication.component';
 import { RouteGuard } from './../route-guard.guard';
@@ -15,6 +16,7 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [RouteGuard] },
     { path: 'authentication', component: AuthenticationComponent },
     { path: 'food/:page', component: FoodComponent },
+    { path: 'cart', component: CartComponent },
     { path: '',   redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: AuthenticationComponent, pathMatch: 'full'},  // Wildcard route for a 404 page TODO: create this page
 ];

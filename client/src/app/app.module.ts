@@ -11,6 +11,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FoodComponent } from './components/food/food.component';
+import { CartComponent } from './components/cart/cart.component';
 import { CurrencyPipe } from './pipes/currency.pipe';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { CurrencyPipe } from './pipes/currency.pipe';
     HomeComponent,
     NavbarComponent,
     FoodComponent,
+    CartComponent,
     CurrencyPipe
   ],
   imports: [

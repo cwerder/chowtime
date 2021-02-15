@@ -1,11 +1,18 @@
 <div class="food-container">
     <div *ngFor="let foodItem of foodItems" class="food-item">
-        <img src="{{foodItem.image}}" style="height: 260px;" />
-        <div>
+        <img src="{{foodItem.image}}" style="height: 260px; width: 280px;" />
+        <div class="food-detail">
             {{foodItem.name}}
         </div>
-        <div>
+        <div class="food-detail">
             {{foodItem.price | currency}}
         </div>
+        <div class="food-detail">
+            <button (click)="addToCart(foodItem)">Add to Cart</button>
+        </div>
+        <label for="qty">qty</label>
+        <select name="quantity" id="qty">
+            <option *ngFor="let selected of maxSelection">{{selected}}</option>
+        </select>
     </div>
 </div>

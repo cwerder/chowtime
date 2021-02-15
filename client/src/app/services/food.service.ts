@@ -8,6 +8,7 @@ import { Router } from "@angular/router";
 export class FoodService {
     constructor(private router: Router, private http: HttpClient) {}
     public getRelevantFoodItems() {
-        return this.http.get(`http://localhost:3000${this.router.url}`);
+        const foodItem = this.router.url.split('/');
+        return this.http.get(`/menu/${foodItem[2]}`);
     }
 }
