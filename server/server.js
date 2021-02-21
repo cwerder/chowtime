@@ -17,6 +17,7 @@ app.use(cors({credentials: true, origin: 'http://localhost:4200'})); // I don't 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(cookieParser());
+// TODO: prevent creation of new session if user is already authenticated.
 app.use(session({
     resave: false,
     saveUninitialized: true,
@@ -35,6 +36,7 @@ var errorRouter = require('./routes/error');
 var oauthRouter = require('./routes/oauth');
 var foodRouter = require('./routes/menu');
 var checkoutRouter = require('./routes/checkout');
+var cartRouter = require('./routes/cart');
 
 // initialize middleware
 var timeLoggerMiddleware = require('./middleware/TimeLogger');
@@ -49,6 +51,7 @@ app.use('/success', successRouter)
 app.use('/error', errorRouter)
 app.use('/oauth', oauthRouter)
 app.use('/menu', foodRouter)
+app.use('/cart', cartRouter)
 app.use('/checkout', checkoutRouter)
 
 // serve the angular app

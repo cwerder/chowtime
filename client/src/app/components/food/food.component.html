@@ -7,12 +7,12 @@
         <div class="food-detail">
             {{foodItem.price | currency}}
         </div>
+        <label for="qty">qty</label>
+        <select name="quantity" id="qty" (change)="quantitySelected($event, foodItem)">
+            <option *ngFor="let selected of maxSelection">{{selected}}</option>
+        </select>
         <div class="food-detail">
             <button (click)="addToCart(foodItem)">Add to Cart</button>
         </div>
-        <label for="qty">qty</label>
-        <select name="quantity" id="qty">
-            <option *ngFor="let selected of maxSelection">{{selected}}</option>
-        </select>
     </div>
 </div>

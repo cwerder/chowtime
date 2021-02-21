@@ -7,3 +7,5 @@ To run the front-end, back-end, and database server together run "npm run initia
 Run mongod --dbpath=/Users/cj/data/db when mongodb fails to start.
 
 Run seedfood script if you want to seed the database with food options.
+
+Run ng build --watch to have the client-side project automatically push saved files to dist on reload.
