@@ -12,9 +12,10 @@ validator.setSettings(require('./validation-settings'));
 
 passport.use('local-login', new LocalStrategy({
     usernameField: 'email',
-    passwordField: 'password'
+    passwordField: 'password',
+    passReqToCallback: true
     },
-    (email, password, done) => {
+    (req, email, password, done) => {
         LocalUser.findOne({
             email: email
         }, async (err, user) => {
@@ -29,7 +30,16 @@ passport.use('local-login', new LocalStrategy({
             const match = await bcrypt.compare(password, user.password);
  
             if (match) {
-                return done(null, toToken(user.toJSON()));
+                if (!user.sessions.includes(req.sessionID)) {
+                    user.sessions.push(req.sessionID);
+                }
+                user.save((err, updateUser) => {
+                    if (err) {
+                        console.error(err);
+                        return done(null, false);
+                    }
+                    return done(null, toToken(updateUser.toJSON()));
+                });
             } else {
                 console.log('no password match')
                 return done(null, false);
@@ -115,7 +125,6 @@ passport.use(new TwitterStrategy({
     });
   }
 ));
-
 
 passport.serializeUser((user, done)=>{
     console.log('serialize', user)
